@@ -1,0 +1,45 @@
+.cell {
+  padding: 10px;
+  background-color: #ffffff;
+  margin: 5px 0;
+  .cell-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .case-code {
+      font-size: 14px;
+      color: #4d4d4d;
+    }
+    .case-status {
+      font-size: 16px;
+      color: #f00000;
+    }
+  }
+  .cell-center {
+    margin-top: 15px;
+    display: flex;
+    .carousel {
+      flex: 1 1;
+      overflow: hidden;
+      //width: 100%;
+      //height: 100%;
+    }
+    .case-detail {
+      //flex: 6 1;
+      width: 200px;
+      margin-left: 10px;
+      > div {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        .text {
+          margin-left: 5px;
+          font-size: 14px;
+          color: #666666;
+          padding: 0;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

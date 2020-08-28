@@ -1,0 +1,111 @@
+@import "./assets/iconfont/iconfont.css";
+
+article,
+aside,
+blockquote,
+body,
+button,
+code,
+dd,
+details,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+input,
+legend,
+li,
+menu,
+nav,
+ol,
+p,
+pre,
+section,
+td,
+textarea,
+th,
+ul #app {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-color: #f5f5f9;
+}
+
+.margin-12 {
+  margin: 12px;
+}
+.margin-top-4 {
+  margin-top: 4px;
+}
+.margin-top-8 {
+  margin-top: 8px;
+}
+.margin-top-12 {
+  margin-top: 12px;
+}
+.margin-left-8 {
+  margin-left: 8px;
+}
+.margin-horizontal-12 {
+  margin: 0 12px;
+}
+.padding-8 {
+  padding: 8px !important;
+}
+.padding-12 {
+  padding: 12px !important;
+}
+.padding-24 {
+  padding: 24px;
+}
+.padding-horizontal-12 {
+  padding: 0 12px;
+}
+.padding-horizontal-24 {
+  padding: 0 24px;
+}
+.padding-vertical-12 {
+  padding: 0 12px;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.ellipsis-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

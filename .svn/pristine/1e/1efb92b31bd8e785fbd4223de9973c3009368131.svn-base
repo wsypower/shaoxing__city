@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>绍兴城市管家</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=jaY60G3NM8B7QyzcgYf8xPdlicCwcvX8"></script>
+    <script src="./configuration.js"></script>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

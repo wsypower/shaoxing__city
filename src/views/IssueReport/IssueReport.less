@@ -1,0 +1,52 @@
+.header {
+  background-color: #306ce7 !important;
+  /deep/ .van-nav-bar__title,
+  /deep/ .van-icon-arrow-left {
+    color: #ffffff;
+  }
+}
+
+.classification {
+  .van-panel__content {
+    padding-bottom: 10px;
+  }
+  .sort {
+    display: flex;
+    flex-wrap: wrap;
+    > div {
+      width: 100px;
+      text-align: center;
+      padding: 1px 5px;
+      margin: 7px 12px;
+      border-radius: 5px;
+      border: solid 1px #b2b2b2;
+      color: #4d4d4d;
+    }
+    .sort-active {
+      background-color: #306ce7;
+      border: solid 1px #306ce7;
+      color: #ffffff;
+    }
+  }
+}
+
+.notice {
+  margin: 5px 10px;
+  border: 1px solid #ed6a0c;
+  border-radius: 5px;
+}
+
+.submit {
+  width: 90%;
+  margin: 20px auto;
+  button {
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.card-title::before {
+  content: '*';
+  color: red;
+  margin-right: 3px;
+}

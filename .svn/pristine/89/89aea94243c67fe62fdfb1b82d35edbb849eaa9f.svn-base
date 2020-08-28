@@ -1,0 +1,13 @@
+.overlay {
+  position: absolute;
+}
+.header {
+  height: 140px;
+  position: relative;
+  margin-bottom: 30px;
+  .logo {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+}
