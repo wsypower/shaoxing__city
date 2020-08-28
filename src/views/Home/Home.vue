@@ -198,14 +198,14 @@ export default {
       ],
       grid2: [
         { text: '犬类管理', icon: 'gou', color: '#fe9132', link: 'dogs' },
-        { text: '自行车', icon: 'bike', color: '#637bff', link: '' },
-        { text: '找公厕', icon: 'weishengjian', color: '#fe9132', link: '' },
+        { text: '自行车', icon: 'bike', color: '#637bff', link: 'MapServeBike' },
+        { text: '找公厕', icon: 'weishengjian', color: '#fe9132', link: 'MapServeWc' },
         { text: '停车诱导', icon: 'tingchechang', color: '#02d298', link: 'parking' },
         { text: '违停查询', icon: 'weizhang', color: '#ff5b59', link: '' },
-        { text: '市长热线', icon: 'show_dianhua_full', color: '#02d298', link: '' },
-        { text: '报警110', icon: 'zuoyebaojing', color: '#ff5b59', link: '' },
+        { text: '市长热线', icon: 'show_dianhua_full', color: '#02d298', link: '057512345', phone: '057512345' },
+        { text: '报警110', icon: 'zuoyebaojing', color: '#ff5b59', link: '110', phone: '110' },
         { text: '垃圾分类指南', icon: 'lajigarbage8', color: '#fe9132', link: '' },
-        { text: '机构分布', icon: 'jigou', color: '#637bff', link: '' },
+        // { text: '机构分布', icon: 'jigou', color: '#637bff', link: '' },
       ],
     };
   },
@@ -222,13 +222,22 @@ export default {
       this.$router.push({ name: 'center' });
     },
     handleLink(item) {
-      const { text, link } = item;
+      const { text, link, phone } = item;
       if (!link) {
         this.$toast({ duration: 500, message: '功能建设中' });
         return;
       }
       if (link === 'parking') {
         this.$router.push({ name: link });
+        return;
+      }
+      if (phone) {
+        console.log(123123);
+        this.$hesc.biz.telephone.call({
+          phone: phone, //电话号码
+          onSuccess() {},
+          onFail() {},
+        });
         return;
       }
       if (!getAuthority('id')) {

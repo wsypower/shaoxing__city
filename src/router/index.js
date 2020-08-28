@@ -70,6 +70,20 @@ const routes = [
         name: 'parking',
         component: () => import('../views/Parking/Parking.vue'),
       },
+      //便民服务-地图自行车
+      {
+        path: '/MapServeBike',
+        name: 'MapServeBike',
+        component: () => import('../views/MapServeBike/MapServe.vue'),
+        props: { title: '自行车', initMap: 'bike' },
+      },
+      //便民服务-地图自行车
+      {
+        path: '/MapServeWc',
+        name: 'MapServeWc',
+        component: () => import('../views/MapServe/MapServe.vue'),
+        props: { title: '找厕所', initMap: 'wc' },
+      },
     ],
   },
 ];

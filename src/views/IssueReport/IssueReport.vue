@@ -1,23 +1,50 @@
 <template>
   <div class="report">
     <GoBack></GoBack>
-    <van-nav-bar title="问题上报" @click-left="goBack" class="header">
-      <template #left><van-icon name="arrow-left" size="18"/></template>
+    <van-nav-bar
+      title="问题上报"
+      @click-left="goBack"
+      class="header"
+    >
+      <template #left>
+        <van-icon
+          name="arrow-left"
+          size="18"
+        /></template>
     </van-nav-bar>
     <van-panel class="classification">
       <template #header>
-        <van-cell title="问题分类" class="padding-8">
+        <van-cell
+          title="问题分类"
+          class="padding-8"
+        >
           <template #icon>
-            <van-icon class-prefix="iconfont icon" name="shuxian" size="20" :style="{ color: '#306ce7' }" />
+            <van-icon
+              class-prefix="iconfont icon"
+              name="shuxian"
+              size="20"
+              :style="{ color: '#306ce7' }"
+            />
           </template>
         </van-cell>
       </template>
       <div class="sort">
-        <div v-for="item in sorts" :key="item.id" :class="[item.active ? 'sort-active' : '']" @click="handleSort(item.id)">
+        <div
+          v-for="item in sorts"
+          :key="item.id"
+          :class="[item.active ? 'sort-active' : '']"
+          @click="handleSort(item.id)"
+        >
           {{ item.label }}
         </div>
       </div>
-      <van-notice-bar class="notice" left-icon="question" wrapable :scrollable="false" :text="sorts[sortIndex].notice" />
+      <van-notice-bar
+        class="notice"
+        left-icon="question"
+        wrapable
+        :scrollable="false"
+        :text="sorts[sortIndex].notice"
+      />
     </van-panel>
     <van-panel class="classification margin-top-12">
       <template #header>
@@ -26,7 +53,12 @@
             <span class="card-title">地理位置</span>
           </template>
           <template #icon>
-            <van-icon class-prefix="iconfont icon" name="shuxian" size="20" :style="{ color: '#306ce7' }" />
+            <van-icon
+              class-prefix="iconfont icon"
+              name="shuxian"
+              size="20"
+              :style="{ color: '#306ce7' }"
+            />
           </template>
         </van-cell>
       </template>
@@ -40,7 +72,10 @@
         autosize
         rows="1"
       />
-      <div id="map" :style="{ margin: '10px', height: '255px' }"></div>
+      <div
+        id="map"
+        :style="{ margin: '10px', height: '255px' }"
+      ></div>
     </van-panel>
     <van-panel class="classification margin-top-12">
       <template #header>
@@ -49,7 +84,12 @@
             <span class="card-title">问题描述</span>
           </template>
           <template #icon>
-            <van-icon class-prefix="iconfont icon" name="shuxian" size="20" :style="{ color: '#306ce7' }" />
+            <van-icon
+              class-prefix="iconfont icon"
+              name="shuxian"
+              size="20"
+              :style="{ color: '#306ce7' }"
+            />
           </template>
         </van-cell>
       </template>
@@ -59,7 +99,7 @@
         autosize
         type="textarea"
         maxlength="100"
-        placeholder="请输入问题描述"
+        placeholder="请将问题的地点描述清楚，例如xx路xx号发生xx问题"
         show-word-limit
       />
     </van-panel>
@@ -70,26 +110,59 @@
             <span class="card-title">照片选择</span>
           </template>
           <template #icon>
-            <van-icon class-prefix="iconfont icon" name="shuxian" size="20" :style="{ color: '#306ce7' }" />
+            <van-icon
+              class-prefix="iconfont icon"
+              name="shuxian"
+              size="20"
+              :style="{ color: '#306ce7' }"
+            />
           </template>
         </van-cell>
       </template>
-      <div data-v-58f81ce1="" class="margin-top-12 margin-left-8 van-uploader">
+      <div
+        data-v-58f81ce1=""
+        class="margin-top-12 margin-left-8 van-uploader"
+      >
         <div class="van-uploader__wrapper">
-          <div class="van-uploader__preview" v-for="(item, index) in resultFile" :key="index">
-            <div class="van-image van-uploader__preview-image" @click="showImagePreview(item)">
-              <img :src="item" class="van-image__img" style="object-fit: cover;" />
+          <div
+            class="van-uploader__preview"
+            v-for="(item, index) in resultFile"
+            :key="index"
+          >
+            <div
+              class="van-image van-uploader__preview-image"
+              @click="showImagePreview(item)"
+            >
+              <img
+                :src="item"
+                class="van-image__img"
+                style="object-fit: cover;"
+              />
             </div>
-            <i class="van-icon van-icon-clear van-uploader__preview-delete" @click="deletePhoto(index)" />
+            <i
+              class="van-icon van-icon-clear van-uploader__preview-delete"
+              @click="deletePhoto(index)"
+            />
           </div>
-          <div class="van-uploader__upload" @click="showShare = true">
+          <div
+            class="van-uploader__upload"
+            @click="showShare = true"
+          >
             <i class="van-icon van-icon-photograph van-uploader__upload-icon" />
           </div>
         </div>
       </div>
     </van-panel>
-    <van-share-sheet v-model="showShare" :options="options" get-container="app" @select="handleSelect" />
-    <van-row class="submit" @click="handleSubmit">
+    <van-share-sheet
+      v-model="showShare"
+      :options="options"
+      get-container="app"
+      @select="handleSelect"
+    />
+    <van-row
+      class="submit"
+      @click="handleSubmit"
+    >
       <van-button type="info">上报</van-button>
     </van-row>
   </div>
@@ -193,7 +266,7 @@ export default {
           compress: true, //true 进行压缩
           thumbnail: false, //true 优先返回缩略图base64，后台上传图片，false不需要缩略图，直接后台上传图片
           mediaUrl, //附件服务器地址
-          onSuccess: result => {
+          onSuccess: (result) => {
             this.resultFile.push(result.pics[0].path);
           },
         });
@@ -202,7 +275,7 @@ export default {
           image: { multiple: false, compress: false, max: 1 }, //multiple true进行多选compress true进行压缩，max最多选9张，如果multiple设置为false，max默认赋值1
           thumbnail: false, //true 优先返回缩略图base64，后台上传图片，false不需要缩略图，直接后台上传图片
           mediaUrl, //附件服务器地址
-          onSuccess: result => {
+          onSuccess: (result) => {
             this.resultFile.push(result.pics[0].path);
           },
         });
@@ -228,7 +301,7 @@ export default {
         source: 7, // 定值
         x84: gcj02towgs84[0],
         y84: gcj02towgs84[1],
-        eventdesc: `${this.sorts.filter(item => item.active)[0].label}：${this.eventdesc}`,
+        eventdesc: `${this.sorts.filter((item) => item.active)[0].label}：${this.eventdesc}`,
         address: this.address,
       }).then(({ code, msg, result }) => {
         this.$toast.clear();
@@ -239,7 +312,7 @@ export default {
         this.$toast.success('上报成功');
         uploadCaseImage({
           eventId: result.eventId,
-          url: this.resultFile.map(item => item.replace('220.191.224.215', '10.75.5.56')).join(';'),
+          url: this.resultFile.map((item) => item.replace('220.191.224.215', '10.75.5.56')).join(';'),
         }).then(({ code, msg, result }) => {
           if (code !== '0') this.$toast.fail('图片上传异常');
         });
@@ -255,7 +328,7 @@ export default {
       this.longitude = longitude;
       this.latitude = latitude;
     };
-    const setAddress = address => (this.address = address);
+    const setAddress = (address) => (this.address = address);
 
     const p = { x1: 0, y1: 0, x2: 0, y2: 0 };
 
@@ -290,19 +363,19 @@ export default {
       });
   */
 
-    map.addEventListener('touchstart', function(evt) {
+    map.addEventListener('touchstart', function (evt) {
       p.x1 = p.x2 = evt.touches[0].clientX;
       p.y1 = p.y2 = evt.touches[0].clientY;
     });
-    map.addEventListener('touchmove', function(evt) {
+    map.addEventListener('touchmove', function (evt) {
       p.x2 = evt.touches[0].clientX;
       p.y2 = evt.touches[0].clientY;
     });
-    map.addEventListener('touchend', function(evt) {
+    map.addEventListener('touchend', function (evt) {
       //如果x轴或者y轴移动超过10px，那么认为是拖动，而不是点击（touch），使用绝对值保证左右上下移动都可以计算正确
       if (Math.abs(p.x1 - p.x2) < 5 && Math.abs(p.y1 - p.y2) < 5) {
         setCoordinate(evt.point.lng, evt.point.lat);
-        gc.getLocation(evt.point, function(rs) {
+        gc.getLocation(evt.point, function (rs) {
           setAddress(rs.address);
         });
         map.clearOverlays();
@@ -326,7 +399,7 @@ export default {
       key: '8730e769e5f114d59325884bf3b7a2e9',
       tiandi: true,
       poi: true,
-      onSuccess: result => {
+      onSuccess: (result) => {
         setCoordinate(result.longitude, result.latitude);
         setAddress(result.address);
         doMap(result.longitude, result.latitude);

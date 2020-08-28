@@ -3,6 +3,7 @@ module.exports = {
   productionSourceMap: false, // 屏蔽sourceMap
   // 反向代理的配置
   devServer: {
+    open: true,
     proxy: {
       '/api': {
         target: 'http://192.168.71.33:9012', //目标地址
