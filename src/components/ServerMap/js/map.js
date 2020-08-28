@@ -19,7 +19,7 @@ export function initBdMap(type) {
   return new Promise((resolve, reject) => {
     map = null;
     map = new BMap.Map('map');
-    map.centerAndZoom('绍兴', 13);
+    map.centerAndZoom(new BMap.Point(120.592835, 30.003487), 13);
     map.enableScrollWheelZoom(true);
     curMapType = type;
     if (curMapType == 'wc') {
@@ -50,6 +50,43 @@ export function initBdMap(type) {
       markIcon = new BMap.Icon(require('../image/green-zxc.png'), new BMap.Size(46, 62));
       selectIcon = new BMap.Icon(require('../image/green-zxc1.png'), new BMap.Size(46, 62));
     }
+
+    resolve(map);
+    // return map;
+  });
+}
+
+function loadBike() {
+  return axios.get(mapApi);
+}
+
+export function getCurrentPosition(x, y) {
+  if (positionOverlay) {
+    map.removeOverlay(positionOverlay);
+  }
+  var point = new BMap.Point(x, y);
+  //if (isInit) {
+  //  map.centerAndZoom(point, 16);
+  //  map.setCenter(point);
+  // isInit = false;
+  //} else {
+  map.setCenter(point);
+  //map.centerAndZoom('北京', 17);
+  //}
+  positionOverlay = new BMap.Marker(point, {
+    icon: positionIcon,
+  });
+  map.addOverlay(positionOverlay);
+
+  if (
+    curMapType == 'jdwx' ||
+    curMapType == 'gdst' ||
+    curMapType == 'ksfw' ||
+    curMapType == 'bjqx' ||
+    curMapType == 'bjfw' ||
+    curMapType == 'zsfw' ||
+    curMapType == 'bike'
+  ) {
     loadBike().then(result => {
       var res = result.data.msg;
       res = JSON.parse(res);
@@ -86,45 +123,9 @@ export function initBdMap(type) {
         // map.setZoom(17);
       });
     });
-    resolve(map);
-    // return map;
-  });
-}
-
-function loadBike() {
-  return axios.get('http://220.191.224.215/api/car/getBikeMessage?userId=004a96201f9f11e9ff864295114d3f23');
-}
-
-export function getCurrentPosition(x, y) {
-  return new Promise((resolve, reject) => {
-    map.removeOverlay(positionOverlay);
-    var point = new BMap.Point(x, y);
-    map.setZoom(17);
-    if (isInit) {
-      map.centerAndZoom(point, 16);
-      map.setCenter(point);
-      isInit = false;
-    } else {
-      map.setCenter(point);
-    }
-    positionOverlay = new BMap.Marker(point, {
-      icon: positionIcon,
-    });
-    map.addOverlay(positionOverlay);
-
-    if (
-      curMapType == 'jdwx' ||
-      curMapType == 'gdst' ||
-      curMapType == 'ksfw' ||
-      curMapType == 'bjqx' ||
-      curMapType == 'bjfw' ||
-      curMapType == 'zsfw' ||
-      curMapType == 'bike'
-    ) {
-    } else {
-      loadMapData();
-    }
-  });
+  } else {
+    loadMapData();
+  }
 }
 
 function loadMapData() {

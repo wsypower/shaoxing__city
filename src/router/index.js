@@ -74,7 +74,7 @@ const routes = [
       {
         path: '/MapServeBike',
         name: 'MapServeBike',
-        component: () => import('../views/MapServeBike/MapServe.vue'),
+        component: () => import('../views/MapServe/MapServe.vue'),
         props: { title: '自行车', initMap: 'bike' },
       },
       //便民服务-地图自行车
@@ -82,7 +82,7 @@ const routes = [
         path: '/MapServeWc',
         name: 'MapServeWc',
         component: () => import('../views/MapServe/MapServe.vue'),
-        props: { title: '找厕所', initMap: 'wc' },
+        props: { title: '找公测', initMap: 'wc' },
       },
     ],
   },

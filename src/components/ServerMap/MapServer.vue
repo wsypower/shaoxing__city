@@ -55,6 +55,8 @@ export default {
         Map.initBdMap(initMap).then((res) => {
           this.map = res;
           Map.getCurrentPosition(longitude, latitude);
+          //   let point = new BMap.Point(longitude, latitude);
+          //this.map.centerAndZoom('北京', 17);
         });
       },
       onFail: () => {
