@@ -1,34 +1,28 @@
 <template>
-  <div class="parking">
+  <div class="waste">
     <header>
       <Header
-        :title="title"
+        title="垃圾分类指南"
         @on-click="goBack"
       ></Header>
     </header>
     <main>
-      <MapServer :initMap='initMap'></MapServer>
+      <iframe
+        src="https://url.cn/m91ILd2Y"
+        width="100%"
+        height="100%"
+        frameborder="0"
+      ></iframe>
     </main>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header/Header.vue';
-import MapServer from '@/components/ServerMap/MapServer.vue';
 export default {
-  name: 'MapServe',
-  props: {
-    title: {
-      type: String,
-    },
-    initMap: {
-      type: String,
-    },
-  },
-  mounted() {},
+  name: 'Waste',
   components: {
     Header,
-    MapServer,
   },
   methods: {
     goBack() {
@@ -39,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="less" >
-.parking {
+.waste {
   width: 100%;
   height: 100%;
   display: flex;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    * {
+        margin: 0px;
+        height: 0px;
+    }
+
+    .parking {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        height: 100px;
+        background-color: #0085CF;
+    }
+
+    main {
+        width: 100%;
+        height: calc(100% - 100px);
+        background-color: red;
+    }
+</style>
+
+<body>
+    <div class="parking">
+        <header>
+            这里是头部信息栏目
+            <!-- <Header title="停车诱导" @on-click="goBack"></Header> -->
+        </header>
+        <main>
+            <iframe src="https://h5.xinwen4.com/sfxt/map.html" width="100%" height="100%" frameborder="0"></iframe>
+        </main>
+    </div>
+</body>
+
+</html>

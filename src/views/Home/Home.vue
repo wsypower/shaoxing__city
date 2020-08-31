@@ -193,18 +193,18 @@ export default {
       grid1: [
         { text: '问题上报', icon: 'wenti', color: '#ff5b59', link: 'issue-report' },
         { text: '历史案卷', icon: 'lishidingdan', color: '#02d298', link: 'history-case' },
-        { text: '优秀案卷', icon: 'anjiandangan', color: '#637bff', link: '' },
-        { text: '曝光台', icon: 'puguangtai', color: '#fe9132', link: '' },
+        // { text: '优秀案卷', icon: 'anjiandangan', color: '#637bff', link: '' },
+        // { text: '曝光台', icon: 'puguangtai', color: '#fe9132', link: '' },
       ],
       grid2: [
         { text: '犬类管理', icon: 'gou', color: '#fe9132', link: 'dogs' },
         { text: '自行车', icon: 'bike', color: '#637bff', link: 'MapServeBike' },
         { text: '找公厕', icon: 'weishengjian', color: '#fe9132', link: 'MapServeWc' },
         { text: '停车诱导', icon: 'tingchechang', color: '#02d298', link: 'parking' },
-        { text: '违停查询', icon: 'weizhang', color: '#ff5b59', link: '' },
+        // { text: '违停查询', icon: 'weizhang', color: '#ff5b59', link: '' },
         { text: '市长热线', icon: 'show_dianhua_full', color: '#02d298', link: '057512345', phone: '057512345' },
         { text: '报警110', icon: 'zuoyebaojing', color: '#ff5b59', link: '110', phone: '110' },
-        { text: '垃圾分类指南', icon: 'lajigarbage8', color: '#fe9132', link: '' },
+        { text: '垃圾分类指南', icon: 'lajigarbage8', color: '#fe9132', link: 'Waste' },
         // { text: '机构分布', icon: 'jigou', color: '#637bff', link: '' },
       ],
     };
@@ -228,11 +228,14 @@ export default {
         return;
       }
       if (link === 'parking') {
-        this.$router.push({ name: link });
+        window.open('https://h5.xinwen4.com/sfxt/map.html');
+        return;
+      }
+      if (link === 'Waste') {
+        window.open('https://url.cn/m91ILd2Y');
         return;
       }
       if (phone) {
-        console.log(123123);
         this.$hesc.biz.telephone.call({
           phone: phone, //电话号码
           onSuccess() {},
