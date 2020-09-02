@@ -227,6 +227,10 @@ export default {
         this.$toast({ duration: 500, message: '功能建设中' });
         return;
       }
+      if (link === 'MapServeBike' || link === 'MapServeWc') {
+        this.$router.push({ name: link });
+        return;
+      }
       if (link === 'parking') {
         window.open('https://h5.xinwen4.com/sfxt/map.html');
         return;
