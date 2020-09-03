@@ -20,7 +20,7 @@ export function initBdMap(type) {
   return new Promise((resolve, reject) => {
     map = null;
     map = new BMap.Map('map');
-    map.centerAndZoom(new BMap.Point(120.592835, 30.003487), 18);
+    map.centerAndZoom(new BMap.Point(120.592835, 30.003487), 16);
     map.enableScrollWheelZoom(true);
     curMapType = type;
     if (curMapType == 'wc') {
@@ -98,7 +98,7 @@ export function getCurrentPosition(x, y) {
         var overlay = new BMap.Marker(point, {
           icon: markIcon,
         });
-        overlay.addEventListener('click', function () {
+        overlay.addEventListener('click', function() {
           if (preOverlay) {
             map.closeInfoWindow();
             preOverlay.setIcon(markIcon);
@@ -113,18 +113,22 @@ export function getCurrentPosition(x, y) {
             title: d.name,
           };
           var infoWindow = new BMap.InfoWindow(
-            '总数：' + d.capacity + '，可租：' + d.availBike + '<br>地址：' + d.address +
-            '<br><button id="bikeNavBtn">导航</button>',
+            '总数：' +
+              d.capacity +
+              '，可租：' +
+              d.availBike +
+              '<br>地址：' +
+              d.address +
+              '<br><button id="bikeNavBtn">导航</button>',
             opts,
           );
           curMarkPos = point;
           map.openInfoWindow(infoWindow, point);
           setTimeout(() => {
-            document.getElementById('bikeNavBtn').onclick = function () {
+            document.getElementById('bikeNavBtn').onclick = function() {
               bikeNav();
-            }
+            };
           }, 100);
-
         });
         overlay.id = d.uid;
         map.addOverlay(overlay);
@@ -139,10 +143,18 @@ export function getCurrentPosition(x, y) {
 
 function bikeNav() {
   var curPos = positionOverlay.getPosition();
-  window.open('http://api.map.baidu.com/direction?' +
-    'origin=latlng:' + curPos.lat + ',' + curPos.lng +
-    '|name:我的位置&destination=latlng:' + curMarkPos.lat + ',' + curMarkPos.lng +
-    '|name:目的地&mode=walking&region=绍兴&output=html&src=webapp.shaoxing.csgj');
+  window.location.assign(
+    'http://api.map.baidu.com/direction?' +
+      'origin=latlng:' +
+      curPos.lat +
+      ',' +
+      curPos.lng +
+      '|name:我的位置&destination=latlng:' +
+      curMarkPos.lat +
+      ',' +
+      curMarkPos.lng +
+      '|name:目的地&mode=walking&region=绍兴&output=html',
+  );
 }
 
 function loadMapData() {
@@ -154,20 +166,20 @@ function loadMapData() {
   preOverlay = null;
   var curPoint = positionOverlay.getPosition();
   var local = new BMap.LocalSearch(map, {
-    onSearchComplete: function () {
+    onSearchComplete: function() {
       var res = local.getResults();
       pois = [];
       for (var i = res.getCurrentNumPois() - 1; i >= 0; i--) {
         pois.push(res.getPoi(i));
       }
-      pois.forEach(function (d) {
+      pois.forEach(function(d) {
         // var d = pois[i];
         var overlay = new BMap.Marker(d.point, {
           icon: markIcon,
         });
         var distance = parseFloat(map.getDistance(curPoint, d.point).toFixed(2));
         d.distance = distance;
-        overlay.addEventListener('click', function () {
+        overlay.addEventListener('click', function() {
           if (preOverlay) {
             preOverlay.getLabel().setContent('');
             preOverlay.setIcon(markIcon);
@@ -178,7 +190,7 @@ function loadMapData() {
           });
           markerLabel.setStyle({
             textAlign: 'center',
-            fontSize: '20px',
+            fontSize: '0px',
             color: 'black',
             border: 'black',
             backgroundColor: 'transparent',
@@ -191,10 +203,11 @@ function loadMapData() {
             title: `<p style='font-size:16px;color:black;font-weight:bold;margin-bottom:5px'>${d.title}</p>`,
             // title: d.title,
           };
-          var img = require("../image/icon.png")
+          var img = require('../image/icon.png');
           var infoWindow = new BMap.InfoWindow(
-            '地址：' + d.address +
-            `<div style='
+            '地址：' +
+              d.address +
+              `<div style='
                         border-top:1px solid #B2B6B9;
                         height:47px;
                         display:flex;
@@ -210,13 +223,13 @@ function loadMapData() {
             `,
             opts,
           );
+          infoWindow.addEventListener('open', function(ype, target, point) {
+            document.getElementById('wcNavBtn').onclick = function() {
+              bikeNav();
+            };
+          });
           curMarkPos = d.point;
           map.openInfoWindow(infoWindow, d.point);
-          setTimeout(() => {
-            document.getElementById('wcNavBtn').onclick = function () {
-              bikeNav();
-            }
-          }, 100);
 
           this.setIcon(selectIcon);
           this.setTop(true);
@@ -225,7 +238,7 @@ function loadMapData() {
         overlay.id = d.uid;
         map.addOverlay(overlay);
         overlays.push(overlay);
-      })
+      });
     },
   });
   if (curMapType == 'wc') {

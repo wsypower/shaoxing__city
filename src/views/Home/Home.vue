@@ -290,4 +290,6 @@ export default {
 
 <style scoped lang="less">
 @import 'Home';
+p {
+}
 </style>
