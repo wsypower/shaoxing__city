@@ -15,7 +15,7 @@ var preOverlay;
 var isInit = true;
 var markIcon;
 var curMarkPos;
-
+var img = require('../image/icon.png');
 export function initBdMap(type) {
   return new Promise((resolve, reject) => {
     map = null;
@@ -108,8 +108,6 @@ export function getCurrentPosition(x, y) {
           this.setTop(true);
           preOverlay = this;
           var opts = {
-            width: 220,
-            height: 90,
             title: d.name,
           };
           var infoWindow = new BMap.InfoWindow(
@@ -119,9 +117,24 @@ export function getCurrentPosition(x, y) {
               d.availBike +
               '<br>地址：' +
               d.address +
-              '<br><button id="bikeNavBtn">导航</button>',
+              '<br>' +
+              `<div style='
+            border-top:1px solid #B2B6B9;
+            height:47px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:7px;
+            '
+  >
+    <div id="bikeNavBtn" style='padding-top:6px;color:#6FAB47;background:url(${img}) no-repeat left center;background-size:18px;padding-left:20px;'>
+        <span>到这去</span>
+    </div>
+</div>
+`,
             opts,
           );
+          //bikeNavBtn
           curMarkPos = point;
           map.openInfoWindow(infoWindow, point);
           setTimeout(() => {
@@ -181,7 +194,6 @@ function loadMapData() {
         d.distance = distance;
         overlay.addEventListener('click', function() {
           if (preOverlay) {
-            preOverlay.getLabel().setContent('');
             preOverlay.setIcon(markIcon);
             preOverlay.setTop(false);
           }
@@ -196,14 +208,13 @@ function loadMapData() {
             backgroundColor: 'transparent',
             fontWeight: 'bold',
           });
-          this.setLabel(markerLabel);
           var opts = {
             // width: 220,
             // height: 109,
             title: `<p style='font-size:16px;color:black;font-weight:bold;margin-bottom:5px'>${d.title}</p>`,
             // title: d.title,
           };
-          var img = require('../image/icon.png');
+
           var infoWindow = new BMap.InfoWindow(
             '地址：' +
               d.address +

@@ -197,7 +197,7 @@ export default {
         // { text: '曝光台', icon: 'puguangtai', color: '#fe9132', link: '' },
       ],
       grid2: [
-        { text: '犬类管理', icon: 'gou', color: '#fe9132', link: 'dogs' },
+        { text: '养犬管理', icon: 'gou', color: '#fe9132', link: 'dogs' },
         { text: '自行车', icon: 'bike', color: '#637bff', link: 'MapServeBike' },
         { text: '找公厕', icon: 'weishengjian', color: '#fe9132', link: 'MapServeWc' },
         { text: '停车诱导', icon: 'tingchechang', color: '#02d298', link: 'parking' },
@@ -261,7 +261,7 @@ export default {
     },
   },
   mounted() {
-    getMeteorology().then((res) => {
+    getMeteorology().then(res => {
       this.meteorology = res;
       const D = new Date();
       const yy = D.getFullYear();
